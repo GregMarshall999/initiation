@@ -1,18 +1,14 @@
 <template>
 
-<h1 :class="affectationTitre">Je suis un titre</h1>
-<button @click="changer">Changer la couleur</button>
+<input v-model="valeur" placeholder="Entrez du text..."/>
+<p>{{ valeur }}</p>
 
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const affectationTitre = ref('titre');
-
-const changer = () => {
-	affectationTitre.value = ''
-}
+const valeur = ref('');
 
 </script>
 
