@@ -1,6 +1,7 @@
 <template>
 
 <h1 :class="affectationTitre">Je suis un titre</h1>
+<button @click="changer">Changer la couleur</button>
 
 </template>
 
@@ -8,6 +9,10 @@
 import { ref } from "vue";
 
 const affectationTitre = ref('titre');
+
+const changer = () => {
+	affectationTitre.value = ''
+}
 
 </script>
 
