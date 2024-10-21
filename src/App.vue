@@ -1,15 +1,21 @@
 <template>
 
-<input v-model="valeur" placeholder="Entrez du text..."/>
-<p>{{ valeur }}</p>
+<h1 v-if="showFirstTitle">Afficher le 1er titre</h1>
+<h1 v-else>Afficher un autre titre</h1>
+
+<p v-show="showFirstTitle">Afficher ce texte</p>
+
+<button @click="toggleTitle">Changer le titre</button>
 
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const valeur = ref('');
-
+const showFirstTitle = ref(true);
+function toggleTitle() {
+	showFirstTitle.value = !showFirstTitle.value;
+}
 </script>
 
 <style scoped>
