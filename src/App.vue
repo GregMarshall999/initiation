@@ -10,7 +10,8 @@ import { ref } from "vue";
 
 const affectationTitre = ref('titre');
 
-const changer = () => {
+const changer = (e) => {
+	console.log(e)
 	affectationTitre.value = ''
 }
 
