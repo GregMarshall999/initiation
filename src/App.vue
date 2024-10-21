@@ -1,32 +1,42 @@
 <template>
 
-<h1 v-if="showFirstTitle">Afficher le 1er titre</h1>
-<h1 v-else>Afficher un autre titre</h1>
+<form @submit.prevent="addTask">
+	<input v-model="nTask" placeholder="Nouvelle Tache" required />
+	<button>Ajouter</button>
+</form>
 
-<p v-show="showFirstTitle">Afficher ce texte</p>
-
-<button @click="toggleTitle">Changer le titre</button>
+<ul>
+	<li v-for="t in taches" :key="t.id">
+		{{ t.text }}
+		<button @click="removeTask(t)">X</button>
+	</li>
+</ul>
 
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const showFirstTitle = ref(true);
-function toggleTitle() {
-	showFirstTitle.value = !showFirstTitle.value;
-}
+let id = 0;
+const taches = ref([
+	{ id: id++, text: 'Faire le lit' }, 
+	{ id: id++, text: 'Faire le petit dejeuner' },
+	{ id: id++, text: 'Aller au travail' }
+]);
+
+const nTask = ref('');
+const addTask = () => {
+	taches.value.push({ id: id++, text: nTask.value });
+	nTask.value = '';
+};
+
+const removeTask = task => {
+	console.log(task);
+	taches.value = taches.value.filter(t => t !== task);
+};
 </script>
 
 <style scoped>
-
-.titre {
-	color: red;
-}
-
-
-
-
 
 header {
   line-height: 1.5;
