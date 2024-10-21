@@ -1,62 +1,47 @@
 <template>
 
-<form @submit.prevent="addTask">
-	<input v-model="nTask" placeholder="Nouvelle Tache" required />
-	<button>Ajouter</button>
-</form>
-
-<ul>
-	<li v-for="t in displayTasks" :key="t.id">
-		<input type="checkbox" v-model="t.done"/>
-		<span :class="{ done: t.done }">{{ t.text }}</span>
-		<button @click="removeTask(t)">X</button>
-	</li>
-</ul>
-
-<button @click="hideTasks = !hideTasks">
-	{{ hideTasks ?  'Afficher taches' : 'Cacher taches' }}
-</button>
+<button @click="update">Test</button>
+<p ref="pElement">{{ test }}</p>
 
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from "vue";
 
-let id = 0;
-const taches = ref([
-	{ id: id++, text: 'Faire le lit', done: true }, 
-	{ id: id++, text: 'Faire le petit dejeuner', done: true },
-	{ id: id++, text: 'Aller au travail', done: false }
-]);
+const test = ref('')
+const update = () => {
+	test.value = 'trois'
+}
 
-const nTask = ref('');
-const addTask = () => {
-	taches.value.push({ id: id++, text: nTask.value, done: false });
-	nTask.value = '';
-};
-
-const removeTask = task => {
-	taches.value = taches.value.filter(t => t !== task);
-};
-
-const hideTasks = ref(false);
-const displayTasks = computed(() => {
-	return hideTasks.value ? 
-		taches.value.filter(t => !t.done) : 
-		taches.value;
+onBeforeMount(() => {
+	console.log('beforeMount', pElement.value);
 });
+
+onMounted(() => {
+	console.log('mounted', pElement.value);
+});
+
+onBeforeUpdate(() => {
+	console.log('beforeUpdate', test.value);
+});
+
+onUpdated(() => {
+	console.log('updated', test.value);
+});
+
+onBeforeUnmount(() => {
+	console.log('beforeUnmount');
+});
+
+onUnmounted(() => {
+	console.log('unmounted');
+});
+
+const pElement = ref(null);
+console.log('element', pElement.value);
 </script>
 
 <style scoped>
-
-span {
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-}
-
-.done {
-	text-decoration: line-through;
-}
 
 header {
   line-height: 1.5;
