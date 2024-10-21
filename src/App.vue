@@ -1,7 +1,8 @@
 <template>
 
 <button @click="update">Test</button>
-<p ref="pElement">{{ test }}</p>
+
+<p :ref="elementTest">{{ test }}</p>
 
 </template>
 
@@ -37,8 +38,13 @@ onUnmounted(() => {
 	console.log('unmounted');
 });
 
-const pElement = ref(null);
+const pElement = ref([]);
 console.log('element', pElement.value);
+
+const elementTest = (e) => {
+	console.log('test ref');
+	pElement.value.push(e);
+}
 </script>
 
 <style scoped>
