@@ -1,15 +1,26 @@
 <template>
-	<Enfant @logMessage="log" :message="'Texte parent'" />
 
-	<Enfant @logMessage="log"/>
+<AffichageSimple>Je suis un message depuis le parent</AffichageSimple>
+
+<AffichageComplexe>
+	<template v-slot:header>
+		Titre du lorem
+	</template>
+
+	<template #footer>
+		Pied du lorem
+	</template>
+
+	<template #default>
+		Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum earum vero reprehenderit, eaque beatae fugiat repellendus nisi nobis, cumque quam aut expedita maxime laborum? Culpa aliquid expedita ex sit sed?
+	</template>
+</AffichageComplexe>
+
 </template>
 
 <script setup>
-import Enfant from '@/components/Enfant.vue'
-
-const log = (m) => {
-	console.log('Enfant clické', m);
-}
+import AffichageSimple from '@/components/AffichageSimple.vue'
+import AffichageComplexe from '@/components/AffichageComplexe.vue'
 </script>
 
 <style scoped>
