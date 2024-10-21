@@ -1,20 +1,18 @@
 <template>
-	<Enfant :id="'test'" :message="'Texte parent'" />
+	<Enfant @logMessage="log" :message="'Texte parent'" />
 
-	<Enfant id="tester" :color="'coloredClass'"/>
-
-	<h2>Test</h2>
+	<Enfant @logMessage="log"/>
 </template>
 
 <script setup>
 import Enfant from '@/components/Enfant.vue'
+
+const log = (m) => {
+	console.log('Enfant clické', m);
+}
 </script>
 
 <style scoped>
-
-#tester {
-	background-color: yellow;
-}
 
 header {
   line-height: 1.5;

@@ -1,26 +1,11 @@
 <template>
-    <h2 :id="id" :class="color">{{ message || 'Aucun message passé' }}</h2>
+    <h2 @click="emits('logMessage', {msg: message, id: 3})">{{ message || 'Aucun message passé' }}</h2>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-
 const props = defineProps({
-    message: String, 
-    color: {
-        type: String, 
-        required: true
-    },
-    id: String
+    message: String
 });
 
-onMounted(() => console.log(props.id));
+const emits = defineEmits(['logMessage']);
 </script>
-
-<style scoped>
-
-.coloredClass {
-    color:red
-}
-
-</style>
