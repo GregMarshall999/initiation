@@ -1,38 +1,26 @@
 <template>
 
-<h1>{{ message }}</h1>
-<p>{{ counter.count }}</p>
+<h1 :class="affectationTitre">Je suis un titre</h1>
 
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref } from "vue";
 
-const message = ref('Hello world');
-
-message.value += '!'
-console.log(message.value);
-
-const counter = reactive({ count: 0 });
-console.log(counter.count);
-
-/*export default {
-	setup() {
-		return {  }
-	},
-	data() {
-		return {
-			message: 'Hello world', 
-			counter: {
-				count: 0
-			}
-		}
-	}
-}*/
+const affectationTitre = ref('titre');
 
 </script>
 
 <style scoped>
+
+.titre {
+	color: red;
+}
+
+
+
+
+
 header {
   line-height: 1.5;
   max-height: 100vh;
