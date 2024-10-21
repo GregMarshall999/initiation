@@ -1,44 +1,30 @@
 <template>
+	<p>Id de la liste de taches: {{ tacheId }}</p>
+	<button @click="tacheId++">Incrémenter ID</button>
 
-<button @click="update">Test</button>
-<p ref="pElement">{{ test }}</p>
-
+	<p v-if="!data">Chargement en cours</p>
+	<pre v-else>{{ data }}</pre>
 </template>
 
 <script setup>
-import { ref, computed, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from "vue";
+import { ref, watch } from 'vue';
 
-const test = ref('')
-const update = () => {
-	test.value = 'trois'
-}
+const tacheId = ref(1);
+const data = ref(null);
+const jsonData = async () => {
+	data.value = null;
+	const fetched = await fetch(`https://jsonplaceholder.typicode.com/todos/${tacheId.value}`);
+	setTimeout(async () => {
+		data.value = await fetched.json();
+	}, 500);
+};
 
-onBeforeMount(() => {
-	console.log('beforeMount', pElement.value);
+jsonData();
+
+watch(tacheId, (newTacheId, oldTacheId) => {
+	console.log('old:', oldTacheId, 'new:', newTacheId)
+	jsonData()
 });
-
-onMounted(() => {
-	console.log('mounted', pElement.value);
-});
-
-onBeforeUpdate(() => {
-	console.log('beforeUpdate', test.value);
-});
-
-onUpdated(() => {
-	console.log('updated', test.value);
-});
-
-onBeforeUnmount(() => {
-	console.log('beforeUnmount');
-});
-
-onUnmounted(() => {
-	console.log('unmounted');
-});
-
-const pElement = ref(null);
-console.log('element', pElement.value);
 </script>
 
 <style scoped>
