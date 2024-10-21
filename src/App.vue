@@ -1,33 +1,20 @@
 <template>
-	<p>Id de la liste de taches: {{ tacheId }}</p>
-	<button @click="tacheId++">Incrémenter ID</button>
+	<Enfant :id="'test'" :message="'Texte parent'" />
 
-	<p v-if="!data">Chargement en cours</p>
-	<pre v-else>{{ data }}</pre>
+	<Enfant id="tester" :color="'coloredClass'"/>
+
+	<h2>Test</h2>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
-
-const tacheId = ref(1);
-const data = ref(null);
-const jsonData = async () => {
-	data.value = null;
-	const fetched = await fetch(`https://jsonplaceholder.typicode.com/todos/${tacheId.value}`);
-	setTimeout(async () => {
-		data.value = await fetched.json();
-	}, 500);
-};
-
-jsonData();
-
-watch(tacheId, (newTacheId, oldTacheId) => {
-	console.log('old:', oldTacheId, 'new:', newTacheId)
-	jsonData()
-});
+import Enfant from '@/components/Enfant.vue'
 </script>
 
 <style scoped>
+
+#tester {
+	background-color: yellow;
+}
 
 header {
   line-height: 1.5;
