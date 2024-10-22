@@ -4,6 +4,7 @@ import Props from '@/views/Props.vue'
 import Refs from '@/views/Refs.vue'
 import Slots from '@/views/Slots.vue'
 import Syntaxe from '@/views/Syntaxe.vue'
+import Directive from '@/views/Directive.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -38,6 +39,11 @@ const router = createRouter({
         path: '/refs', 
         name: 'Refs', 
         component: Refs
+    }, 
+    {
+        path: '/directive', 
+        name: 'Directive', 
+        component: Directive
     }
   ]
 })
