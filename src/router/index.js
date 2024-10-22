@@ -1,6 +1,7 @@
 import Conditionnel from '@/views/Conditionnel.vue'
 import Liste from '@/views/Liste.vue'
 import Props from '@/views/Props.vue'
+import Slots from '@/views/Slots.vue'
 import Syntaxe from '@/views/Syntaxe.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -26,6 +27,11 @@ const router = createRouter({
         path: '/liste', 
         name: 'Liste', 
         component: Liste
+    }, 
+    {
+        path: '/slots', 
+        name: 'Slots', 
+        component: Slots
     }
   ]
 })
