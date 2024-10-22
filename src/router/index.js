@@ -1,3 +1,4 @@
+import Conditionnel from '@/views/Conditionnel.vue'
 import Props from '@/views/Props.vue'
 import Syntaxe from '@/views/Syntaxe.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/props', 
       name: 'Props', 
       component: Props
+    }, 
+    {
+      path: '/conditionnel', 
+      name: 'Conditionnel', 
+      component: Conditionnel
     }
   ]
 })
