@@ -1,3 +1,3 @@
 <template>
-    Home
+    Bienvenue sur l'acheminement
 </template>
