@@ -30,7 +30,7 @@ const router = useRouter();
 const texteContact = ref('');
 const checkMessage = ref(false);
 const contacter = () => {
-    router.push({ name: 'Home' });
+    router.push({ name: 'Message', params: { message: texteContact.value } });
 }
 
 </script>

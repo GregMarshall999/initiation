@@ -1,5 +1,6 @@
 import Contact from '@/views/Contact.vue'
 import Home from '@/views/Home.vue'
+import MessageContact from '@/views/MessageContact.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -15,6 +16,12 @@ const router = createRouter({
       name: 'Contact', 
       component: Contact
     },
+    {
+      path: '/messageContact/:message', 
+      name: 'Message', 
+      component: MessageContact, 
+      props: true
+    }
   ]
 })
 
