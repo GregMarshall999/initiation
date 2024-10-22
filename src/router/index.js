@@ -1,9 +1,4 @@
-import Contact from '@/views/Contact.vue'
-import Home from '@/views/Home.vue'
-import Login from '@/views/Login.vue'
-import MessageContact from '@/views/MessageContact.vue'
-import NotFound from '@/views/NotFound.vue'
-import Profil from '@/views/Profil.vue'
+import Syntaxe from '@/views/Syntaxe.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -11,69 +6,10 @@ const router = createRouter({
   routes: [
     {
       path: '/', 
-      name: 'Home', 
-      component: Home
-    }, 
-    {
-      path: '/contact', 
-      name: 'Contact', 
-      component: Contact
-    },
-    {
-      path: '/messageContact/:message', 
-      name: 'Message', 
-      component: MessageContact, 
-      props: true
-    }, 
-    {
-      path: '/login', 
-      name: 'Login', 
-      component: Login, 
-      meta: {
-        titrePage: 'Se connecter'
-      }
-    },
-    {
-      path: '/profil', 
-      name: 'Profil',
-      component: Profil, 
-      meta: {
-        titrePage: 'Mon Profil'
-      }
-    },
-    {
-      path: '/:pathMatch(.*)*', 
-      name: 'NotFound', 
-      component: NotFound
+      name: 'Syntaxe', 
+      component: Syntaxe
     }
   ]
-})
-
-router.beforeEach((to, _, next) => {
-  console.log('before each')
-  
-  const titlePages = ['Login', 'Profil'];
-
-  if(titlePages.includes(to.name)) {
-    document.title = to.meta.titrePage;
-  }
-  else {
-    document.title = 'Vue Initiation';
-  }
-
-  if(to.name === 'Profil' && (!localStorage.connecte || localStorage.connecte === 'false')) {
-    next({ name: 'Home' });
-  } else {
-    next();
-  }
-});
-
-router.beforeResolve((_) => {
-  console.log('before resolve')
-})
-
-router.afterEach((to, from) => {
-  console.log('before afterEach')
 })
 
 export default router
