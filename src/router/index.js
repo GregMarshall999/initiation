@@ -1,6 +1,7 @@
 import Contact from '@/views/Contact.vue'
 import Home from '@/views/Home.vue'
 import MessageContact from '@/views/MessageContact.vue'
+import NotFound from '@/views/NotFound.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -21,8 +22,16 @@ const router = createRouter({
       name: 'Message', 
       component: MessageContact, 
       props: true
+    }, 
+    {
+      path: '/:pathMatch(.*)*', 
+      name: 'NotFound', 
+      component: NotFound
     }
   ]
 })
+
+
+
 
 export default router
