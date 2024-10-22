@@ -5,7 +5,6 @@
 <script>
 import { h, ref } from 'vue';
 
-
 export default {
     setup() {
         const compteur = ref(0);

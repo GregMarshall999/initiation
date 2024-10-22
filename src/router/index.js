@@ -1,3 +1,4 @@
+import Props from '@/views/Props.vue'
 import Syntaxe from '@/views/Syntaxe.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -8,6 +9,11 @@ const router = createRouter({
       path: '/', 
       name: 'Syntaxe', 
       component: Syntaxe
+    }, 
+    {
+      path: '/props', 
+      name: 'Props', 
+      component: Props
     }
   ]
 })
