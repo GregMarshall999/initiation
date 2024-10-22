@@ -6,8 +6,8 @@
 </form>
 
 <ul>
-	<li v-for="t in taches" :key="t.id">
-		{{ t.text }}
+	<li v-for="(t, index) in taches" :key="t.id">
+		{{ t.text }} {{ index }}
 		<button @click="removeTask(t)">X</button>
 	</li>
 </ul>
