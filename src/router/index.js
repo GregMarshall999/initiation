@@ -50,6 +50,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
+  console.log('before each')
+  
   const titlePages = ['Login', 'Profil'];
 
   if(titlePages.includes(to.name)) {
@@ -65,5 +67,13 @@ router.beforeEach((to, _, next) => {
     next();
   }
 });
+
+router.beforeResolve((_) => {
+  console.log('before resolve')
+})
+
+router.afterEach((to, from) => {
+  console.log('before afterEach')
+})
 
 export default router
