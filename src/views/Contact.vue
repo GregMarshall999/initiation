@@ -1,22 +1,35 @@
 <template>
     <h1>Prendre contact avec nous</h1>
 
-    <form @submit.prevent="contacter" class="form-contact">
-        <input v-model="texteContact" placeholder="Entrez votre texte ici..."/>
+    <form @submit.prevent="checkMessage = true" class="form-contact">
+        <input v-model="texteContact" placeholder="Entrez votre texte ici..." required/>
         <button>Prendre contact</button>
     </form>
+
+    <Modal v-if="checkMessage">
+        <template #title>Votre message: </template>
+        <template #content>{{ texteContact }}</template>
+        <template #actions>
+            <button 
+                @click="contacter"
+                style="width: fit-content;"
+            >
+                Envoyer
+            </button>
+        </template>
+    </Modal>
 </template>
 
 <script setup>
+import Modal from '@/components/Modal.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
 const texteContact = ref('');
+const checkMessage = ref(false);
 const contacter = () => {
-    console.log(texteContact.value);
-
     router.push({ name: 'Home' });
 }
 
@@ -32,6 +45,9 @@ const contacter = () => {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    margin-bottom: 1em;
+
     input {
         height: 200px;
     }
